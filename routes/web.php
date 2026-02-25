@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\UserController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -20,14 +20,10 @@ Route::get('/', function () {
     return view('welcome'); #retorna a view welcome, que é a página inicial do Laravel
 });
 
-<<<<<<< HEAD
+
 Route::get('/greeting', function () {
     return view ('hello'); 
 });
 
 #Quando acessar a rota /users, o método index do UserController será executado, que retorna a view users com os dados dos usuários do banco de dados.
 Route::get('/users', [UserController::class, 'index']);
-=======
-Route::get('/users', [UserController::class, 'index']);
-
->>>>>>> 8f58308b9a139a16ab6fc7438418609a21ee65ca
