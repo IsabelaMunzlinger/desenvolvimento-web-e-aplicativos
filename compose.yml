@@ -24,6 +24,7 @@ services:
     depends_on:
       - app
 
+ # O serviço de banco de dados MySQL, container para o banco
   db:
     image: mysql:8.0
     container_name: laravel12-db
@@ -33,7 +34,8 @@ services:
       MYSQL_PASSWORD: laravel
       MYSQL_ROOT_PASSWORD: root
     ports:
-      - "3307:3306"
+    # Uma porta do host (3306) é mapeada para a porta do container (3307), permitindo que o banco de dados seja acessado externamente.
+      - "3307:3306" # Mapeia a porta 3306 do container para a porta 3307 do host.
     volumes:
       - dbdata:/var/lib/mysql
 
