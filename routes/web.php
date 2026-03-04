@@ -26,4 +26,6 @@ Route::get('/greeting', function () {
 });
 
 #Quando acessar a rota /users, o método index do UserController será executado, que retorna a view users com os dados dos usuários do banco de dados.
-Route::get('/users', [UserController::class, 'index']);
+Route::get('/users', [UserController::class, 'index']); //Index é o nome do método do controller
+Route::get('users/create', [UserController::class, 'create']); //método create para exibir o formulário de criação de usuário
+Route::post('users/store', [UserController::class, 'store']); //método store para salvar o novo usuário no banco de dados
