@@ -12,9 +12,7 @@
         Users
     </h1>
 
-    <a href = "/users/create">Criar usuário</a>
-
-    <a href button class="btn btn-primary" href="/users/create">Criar usuário</a>
+    <a href="/users/create" class="btn btn-primary my-1">Criar usuário</a>
 
     <table class="table">
         <thead>
@@ -22,6 +20,7 @@
                 <th>Id</th>
                 <th>Name</th>
                 <th>E-mail</th>
+                <th>Ações</th>
             </tr>
         </thead>
         <tbody>
@@ -30,6 +29,20 @@
                 <td>{{$user->id}}</td>
                 <td>{{$user->name}}</td>
                 <td>{{$user->email}}</td>
+                <td>
+                    <a
+                        href="/users/{{$user->id}}"
+                        class="btn btn-primary"
+                    >
+                        Alterar
+                    </a>
+                    <a
+                        href="/users/{{$user->id}}/delete"
+                        class="btn btn-danger"
+                    >
+                        Excluir
+                    </a>
+                </td>
             </tr>
             @endforeach
         </tbody>

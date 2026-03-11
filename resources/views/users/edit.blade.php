@@ -9,23 +9,26 @@
 </head>
 <body>
     <h1>
-        Users / Create
+        Users / Edit
     </h1>
 
     <a href = "/users">Voltar</a>
 
-    <form  method="POST" action="/users/store">
+    <form  method="POST" action="/users/{{$user->id}}">
         @csrf
+        @method('PUT')
         <label for="name">Nome</label>
             <input
             name="name"
             type="text"
+            value="{{$user->name}}"
             
         />
         <label for="">Email</label>
                 <input
                 name="email"
                 type="text"
+                value="{{$user->email}}"
                 
         />
         <label for="">Senha</label>

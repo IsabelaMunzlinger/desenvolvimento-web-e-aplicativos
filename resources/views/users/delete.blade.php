@@ -9,30 +9,39 @@
 </head>
 <body>
     <h1>
-        Users / Create
+        Users / Delete
     </h1>
 
     <a href = "/users">Voltar</a>
 
-    <form  method="POST" action="/users/store">
+    <p>
+        Tem certeza que deseja excluir o usuário {{$user->name}}?
+    </p>
+
+    <form  method="POST" action="/users/{{$user->id}}">
         @csrf
+        @method('DELETE')
+        
         <label for="name">Nome</label>
             <input
             name="name"
             type="text"
+            value="{{$user->name}}"
+            disabled
             
         />
         <label for="">Email</label>
                 <input
                 name="email"
                 type="text"
-                
+                value="{{$user->email}}"
+                disabled
         />
         <label for="">Senha</label>
                 <input
                 name="password"
                 type="password"
-                
+                disabled
         />
         <button type="submit">Enviar</button> <!-- botão para enviar o formulário -->
     </form>

@@ -29,3 +29,7 @@ Route::get('/greeting', function () {
 Route::get('/users', [UserController::class, 'index']); //Index é o nome do método do controller
 Route::get('users/create', [UserController::class, 'create']); //método create para exibir o formulário de criação de usuário
 Route::post('users/store', [UserController::class, 'store']); //método store para salvar o novo usuário no banco de dados
+Route::get('users/{user}', [UserController::class, 'edit']); //método show para exibir os detalhes de um usuário específico
+Route::put('users/{user}', [UserController::class, 'update']); //método show para exibir os detalhes de um usuário específico
+Route::get('users/{user}/delete', [UserController::class, 'confirmDelete']); //método edit para exibir o formulário de edição de um usuário específico 
+Route::delete('users/{user}', [UserController::class, 'delete']); //método destroy para excluir um usuário específico
