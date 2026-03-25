@@ -47,13 +47,20 @@ class UserController extends Controller
         
         return redirect('/users');
     }
+    /**
+     * Edit.
+     */
 
-    public function edit(Request $request, User $user) : View
-    {
+    public function edit(Request $request, User $user): View
+    { 
+        $user->load('phones');
+
         return view('users.edit', [
             'user' => $user
         ]);
     }
+
+
 
     public function update(Request $request, User $user): RedirectResponse
     {
@@ -94,6 +101,18 @@ class UserController extends Controller
         $user->delete();
  
         return redirect('/users');
+    }
+
+
+     /**
+     * Criar telefone
+     */
+    public function createPhone(Request $request, User $user) : View
+    {
+        return view('users.phones.create', [
+                        'user'=> $user]
+        ); //forma de organização das views
+
     }
 
 }

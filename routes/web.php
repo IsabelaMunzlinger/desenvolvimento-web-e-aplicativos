@@ -33,3 +33,7 @@ Route::get('users/{user}', [UserController::class, 'edit']); //método show para
 Route::put('users/{user}', [UserController::class, 'update']); //método show para exibir os detalhes de um usuário específico
 Route::get('users/{user}/delete', [UserController::class, 'confirmDelete']); //método edit para exibir o formulário de edição de um usuário específico 
 Route::delete('users/{user}', [UserController::class, 'delete']); //método destroy para excluir um usuário específico
+
+Route::get('users/{user}/phone', [UserController::class, 'createPhone']);
+Route::post('users/{user}/phone/store', [UserController::class, 'storePhone']); //método store para salvar o novo usuário no banco de dados
+Route::delete('users/{user}/phone/{phone}', [UserController::class, 'deletePhone']); //método store para salvar o novo usuário no banco de dados
