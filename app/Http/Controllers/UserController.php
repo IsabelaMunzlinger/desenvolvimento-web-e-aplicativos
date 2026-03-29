@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Validation\Rule;
 use Illuminate\View\View;
+use App\Models\Phone;
 
 class UserController extends Controller
 {
@@ -114,5 +115,35 @@ class UserController extends Controller
         ); //forma de organização das views
 
     }
+
+    /**
+     * Salvar o telefone no banco de dados
+     */
+    public function storePhone(Request $request, User $user): RedirectResponse
+    {
+        // 1. Validar se o usuário digitou o número
+        $request->validate([
+            'number' => 'required|string|max:20', 
+        ]);
+
+        // 2. Salvar o telefone usando a relação do usuário
+        $user->phones()->create([
+            'number' => $request->number,
+        ]);
+
+        // 3. Redirecionar de volta para a tela de edição do usuário
+        // Você pode ajustar esse redirecionamento para onde achar melhor!
+        return redirect('/users/' . $user->id); 
+    }
+
+    public function deletePhone(Request $request, User $user, Phone $phone): RedirectResponse
+            { 
+                // 1. Exclui o registro do banco de dados
+                $phone->delete();
+        
+                // 2. Redireciona de volta para a tela de edição daquele usuário específico
+                return redirect('/users/' . $user->id); 
+            }
+
 
 }

@@ -9,6 +9,7 @@ class Phone extends User
 {
     use HasFactory;
 
+    protected $fillable = ['number'];
      /**
      * Get the phone that owns the comment.
      */

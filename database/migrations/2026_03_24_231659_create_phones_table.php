@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('phones', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained(); //chave estrangeira vinculada a tabela de users, não deixa excluir dados de usuario sem o telefone
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');; //chave estrangeira vinculada a tabela de users, não deixa excluir dados de usuario sem o telefone
             $table->string('number');
             $table->timestamps();
         });

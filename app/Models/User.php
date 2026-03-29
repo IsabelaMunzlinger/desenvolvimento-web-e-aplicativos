@@ -51,8 +51,8 @@ class User extends Authenticatable
     /**
      * Get the phones for the user     
      **/
-     public function phones(): HasMany
+    public function phones() : HasMany
     {
-        return $this->hasMany(Phone::class)->chaperone();
+        return $this->hasMany(Phone::class);
     }
 }
