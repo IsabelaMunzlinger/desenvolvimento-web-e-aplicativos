@@ -25,6 +25,21 @@
                             <div class="mb-3">
                                 <label for="number" class="form-label">Número do Telefone</label>
                                 <input name="number" id="number" type="text" class="form-control" placeholder="(00) 00000-0000" />
+                            
+                                <script src="https://unpkg.com/imask"></script>
+
+                                <script>
+                                    document.addEventListener("DOMContentLoaded", function() {
+                                        var phoneInput = document.getElementById('number');
+                                        
+                                        var maskOptions = {
+                                            mask: '(00) 00000-0000'
+                                        };
+                                        
+                                        var mask = IMask(phoneInput, maskOptions);
+                                    });
+                                </script>
+                            
                             </div>
 
                             <div class="d-flex justify-content-between mt-4">

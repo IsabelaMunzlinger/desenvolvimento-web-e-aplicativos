@@ -36,4 +36,5 @@ Route::delete('users/{user}', [UserController::class, 'delete']); //método dest
 
 Route::get('users/{user}/phone', [UserController::class, 'createPhone']);
 Route::post('users/{user}/phone', [UserController::class, 'storePhone']); //método store para salvar o novo usuário no banco de dados
-Route::delete('users/{user}/phone/{phone}', [UserController::class, 'deletePhone']); //método store para salvar o novo usuário no banco de dados
+Route::delete('users/{user}/phone', [UserController::class, 'deletePhones']); //método apagar todos os telefones do usuário
+Route::delete('users/{user}/phone/{phone}', [UserController::class, 'deletePhone']); //método apagar um telefone específico do usuário

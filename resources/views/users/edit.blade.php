@@ -55,8 +55,16 @@
                     <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
                         <h5 class="mb-0">Telefones Cadastrados</h5>
                         <a href="/users/{{$user->id}}/phone" class="btn btn-sm btn-success">+ Adicionar Telefone</a>
+                        
+                        <form action="/users/{{$user->id}}/phone" method="POST" style="display: inline;">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Tem certeza que deseja excluir TODOS os telefones deste usuário?')">
+                                Excluir todos os Telefones
+                            </button>
+                        </form>
                     </div>
-                    
+                
                     <div class="card-body p-0">
                         <div class="table-responsive">
                             <table class="table table-hover table-striped align-middle mb-0">

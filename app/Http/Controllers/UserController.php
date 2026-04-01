@@ -70,12 +70,12 @@ class UserController extends Controller
 
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required|string|email|max:255|unique:email,id,' . $user->id],
-            //ou assim também required|string|email|max:255|unique:users
-            'password' => ['required', 'string', 'min:8']],
+            'email' => ['required','string','email','max:255', 'unique:users,email,' . $user->id],
+        ],
             ['name.required' => 'O campo nome é obrigatório.',
-            'email.unique' => 'O email já está em uso por outro usuário.']);
-
+            'email.unique' => 'O email já está em uso por outro usuário.'
+            ]);
+        
         $user->name = $request->name;
         $user->email = $request->email;
 
@@ -116,15 +116,30 @@ class UserController extends Controller
 
     }
 
+    /*
+        public function createPhone(Request $request, User $user) : View
+    {
+        $user->phones()->create([
+            'number' => $request->number //vem do input do formulário de nome number
+        ]);
+
+    }*/
+
     /**
      * Salvar o telefone no banco de dados
      */
-    public function storePhone(Request $request, User $user): RedirectResponse
+    public function storePhone(Request $request, User $user): RedirectResponse //responsta de redirecionamento; grava no banco e volta na tabela de phones
     {
         // 1. Validar se o usuário digitou o número
         $request->validate([
-            'number' => 'required|string|max:20', 
-        ]);
+            'number' => 'required|string|max:20|unique:phones,number',
+        ],
+        [
+        'number.required' => 'O campo número é obrigatório.',
+        'number.size' => 'O campo número deve conter no máximo 20 caracteres.',
+        'number.unique' => 'O número já existe.'
+        ]
+        );
 
         // 2. Salvar o telefone usando a relação do usuário
         $user->phones()->create([
@@ -132,7 +147,6 @@ class UserController extends Controller
         ]);
 
         // 3. Redirecionar de volta para a tela de edição do usuário
-        // Você pode ajustar esse redirecionamento para onde achar melhor!
         return redirect('/users/' . $user->id); 
     }
 
@@ -144,6 +158,13 @@ class UserController extends Controller
                 // 2. Redireciona de volta para a tela de edição daquele usuário específico
                 return redirect('/users/' . $user->id); 
             }
+
+    public function deletePhones(Request $request, User $user): RedirectResponse
+    {
+        $user->phones()->delete();
+
+        return redirect('/users/' . $user->id);
+    }
 
 
 }
