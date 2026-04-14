@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\UnoescController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -38,3 +39,6 @@ Route::get('users/{user}/phone', [UserController::class, 'createPhone']);
 Route::post('users/{user}/phone', [UserController::class, 'storePhone']); //método store para salvar o novo usuário no banco de dados
 Route::delete('users/{user}/phone', [UserController::class, 'deletePhones']); //método apagar todos os telefones do usuário
 Route::delete('users/{user}/phone/{phone}', [UserController::class, 'deletePhone']); //método apagar um telefone específico do usuário
+
+Route::get('/unoesc', [UnoescController::class, 'index']);
+Route::post('/unoesc', [UnoescController::class, 'login']);
